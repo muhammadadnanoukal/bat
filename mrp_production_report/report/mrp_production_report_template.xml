@@ -37,7 +37,7 @@
                                             ............................................................................................................................................
                                         </span>
                                         <div>
-                                            P.S<span style="margin-right: 43px;"/>:
+                                            P.S<span style="margin-right: 41px;"/>:
                                             <span style="margin-right: 20px;"/>
                                             <span t-if="o.date_finished">
                                                 <span t-if="o.date_finished and o.date_finished.hour &gt; 20 or o.date_finished.hour &lt; 8">
@@ -52,7 +52,7 @@
                                             ............................................................................................................................................
                                         </span>
                                         <div>
-                                            P.T<span style="margin-right: 42px;"/>:
+                                            P.T<span style="margin-right: 41px;"/>:
                                             <span style="margin-right: 20px;"/>
                                             <span t-if="o.date_finished">
                                                 <span t-esc="o.date_finished.strftime('%H:%M:%S')"/>
@@ -63,7 +63,7 @@
                                             ............................................................................................................................................
                                         </span>
                                         <div>
-                                            P.TYP<span style="margin-right: 30px;"/>:
+                                            P.TYP<span style="margin-right: 25px;"/>:
                                             <span style="margin-right: 20px;"/>
                                             <span t-field="o.print_barcode"/>
                                         </div>
@@ -71,7 +71,7 @@
                                             ............................................................................................................................................
                                         </span>
                                         <div>
-                                            SHT/PLT<span style="margin-right: 14px;"/>:
+                                            SHT/PLT<span style="margin-right: 11px;"/>:
                                             <span style="margin-right: 20px;"/>
                                             <span t-field="o.sheet_pallet"/>
                                         </div>
@@ -79,7 +79,7 @@
                                             ............................................................................................................................................
                                         </span>
                                         <div>
-                                            Q.INSP<span style="margin-right: 22px;"/>:
+                                            Q.INSP<span style="margin-right: 19px;"/>:
                                             <span style="margin-right: 20px;"/>
                                             <span t-field="o.inspector"/>
                                         </div>
@@ -87,14 +87,14 @@
                                             ............................................................................................................................................
                                         </span>
                                         <div>
-                                            P.OPR<span style="margin-right: 28px;"/>:
+                                            P.OPR<span style="margin-right: 24px;"/>:
                                             <span style="margin-right: 20px;"/>
                                             <span t-field="o.user_id"/>
                                         </div>
                                         <span style="font-size: 6pt;">
                                             ............................................................................................................................................
                                         </span>
-                                        <div style="text-align: right;">
+                                        <div style="text-align: left;">
                                             <t t-if="o.note">
                                                 <span t-field="o.note"/>
                                             </t>

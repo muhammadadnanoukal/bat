@@ -22,7 +22,7 @@ class MrpProductionReport(models.Model):
     @api.depends('product_id')
     def _compute_inspector(self):
         for record in self:
-            record.inspector = record.env['quality.check'].search([('product_id', '=', record.product_id.id)]).user_id
+            record.inspector = record.env['quality.check'].search([('production_id', '=', record.id)]).user_id
 
     @api.depends('product_id')
     def _compute_sheet_pallet(self):

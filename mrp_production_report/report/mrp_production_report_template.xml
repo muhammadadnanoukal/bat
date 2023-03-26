@@ -6,13 +6,10 @@
                 <t t-foreach="docs" t-as="o">
                     <t t-call="web.basic_layout">
                         <div class="content" dir="LTR" style="font-size: 9pt;">
-                            <div style="font-size: 7pt; color: white; font-wight: bold; background-color: grey; width: 100%;">
-                                <table class="table table-borderless" style="width:100%">
-                                    <tr>
-                                        <td style="width:50% text-align: left;">www.batec-gb.com</td>
-                                        <td style="width:50%; text-align: right;">info@batec-gb.com</td>
-                                    </tr>
-                                </table>
+                            <div style="font-size: 8pt; color: white; font-wight: bold; background-color: grey;">
+                                <center style="word-spacing: 70px;">
+                                    <p>www.batec-gb.com info@batec-gb.com</p>
+                                </center>
                             </div>
                             <p>
                                 <img style=" margin-left: 40px; max-width: 50%"
@@ -20,14 +17,14 @@
                             </p>
                             <table class="table table-borderless" style="width:100%">
                                 <tr>
-                                    <td style="width: 60%">
+                                    <td>
                                         <div style="text-align: center;">
-                                            PLT<span style="margin-right: 10px;"/>(NO.<span style="color: red;"
-                                                                                            t-field="o.lot_producing_id"/>
+                                            PLT<span style="margin-right: 10px;"/>(NO.
+                                            <span style="color: red;" t-field="o.lot_producing_id"/>
                                             )
                                         </div>
                                         <span style="font-size: 6pt;">
-                                            .........................................................................
+                                            ............................................................................................................................................
                                         </span>
                                         <div>
                                             P.D<span style="margin-right: 40px;"/>:
@@ -37,10 +34,10 @@
                                             </span>
                                         </div>
                                         <span style="font-size: 6pt;">
-                                            .........................................................................
+                                            ............................................................................................................................................
                                         </span>
                                         <div>
-                                            P.S<span style="margin-right: 41px;"/>:
+                                            P.S<span style="margin-right: 43px;"/>:
                                             <span style="margin-right: 20px;"/>
                                             <span t-if="o.date_finished">
                                                 <span t-if="o.date_finished and o.date_finished.hour &gt; 20 or o.date_finished.hour &lt; 8">
@@ -52,7 +49,7 @@
                                             </span>
                                         </div>
                                         <span style="font-size: 6pt;">
-                                            .........................................................................
+                                            ............................................................................................................................................
                                         </span>
                                         <div>
                                             P.T<span style="margin-right: 42px;"/>:
@@ -63,15 +60,15 @@
 
                                         </div>
                                         <span style="font-size: 6pt;">
-                                            .........................................................................
+                                            ............................................................................................................................................
                                         </span>
                                         <div>
-                                            P.TYP<span style="margin-right: 27px;"/>:
+                                            P.TYP<span style="margin-right: 30px;"/>:
                                             <span style="margin-right: 20px;"/>
                                             <span t-field="o.print_barcode"/>
                                         </div>
                                         <span style="font-size: 6pt;">
-                                            .........................................................................
+                                            ............................................................................................................................................
                                         </span>
                                         <div>
                                             SHT/PLT<span style="margin-right: 14px;"/>:
@@ -79,47 +76,68 @@
                                             <span t-field="o.sheet_pallet"/>
                                         </div>
                                         <span style="font-size: 6pt;">
-                                            .........................................................................
+                                            ............................................................................................................................................
                                         </span>
                                         <div>
-                                            Q.INSP <span style="margin-right: 22px;"/>:<span style="margin-right: 20px;"/> <span t-field="o.inspector"/>
+                                            Q.INSP<span style="margin-right: 22px;"/>:
+                                            <span style="margin-right: 20px;"/>
+                                            <span t-field="o.inspector"/>
                                         </div>
                                         <span style="font-size: 6pt;">
-                                            .........................................................................
+                                            ............................................................................................................................................
                                         </span>
                                         <div>
-                                            P.OPR<span style="margin-right: 26px;"/>:
+                                            P.OPR<span style="margin-right: 28px;"/>:
                                             <span style="margin-right: 20px;"/>
                                             <span t-field="o.user_id"/>
                                         </div>
                                         <span style="font-size: 6pt;">
-                                            .........................................................................
+                                            ............................................................................................................................................
                                         </span>
                                         <div style="text-align: right;">
-                                            <span t-field="o.note"/>
+                                            <t t-if="o.note">
+                                                <span t-field="o.note"/>
+                                            </t>
+                                            <t t-else="">
+                                                <p style="color: white">NOTE</p>
+                                            </t>
                                         </div>
-                                        <span style="font-size: 6pt;">
-                                            .........................................................................
-                                        </span>
+                                        <div style="font-size: 6pt; margin-top: -15px">
+                                            ............................................................................................................................................
+                                        </div>
                                     </td>
-                                    <td style="width:40%"/>
                                 </tr>
                             </table>
-                            <br/>
-                            <t t-set="merge_barcode" t-value="o.print_barcode + o.lot_producing_id.name"/>
+                            <t t-if="o.print_barcode and not o.lot_producing_id.name">
+                                <t t-set="merge_barcode" t-value="o.print_barcode"/>
+                            </t>
+                            <t t-if="o.lot_producing_id.name and not o.print_barcode">
+                                <t t-set="merge_barcode" t-value="o.lot_producing_id.name"/>
+                            </t>
+                            <t t-if="o.print_barcode and o.lot_producing_id.name">
+                                <t t-set="merge_barcode" t-value="o.print_barcode + o.lot_producing_id.name"/>
+                            </t>
                             <center>
-                                <span t-esc="merge_barcode"
-                                      t-options="{'widget': 'barcode',  'img_style': 'max-height:50pt; max-width:100%;', 'img_align': 'center'}"/>
-                                <br/>
-                                <br/>
+                                <t t-if="merge_barcode">
+                                    <div style="margin-top: 25px" t-esc="merge_barcode"
+                                         t-options="{'widget': 'barcode',  'img_style': 'max-height:50pt; max-width:100%;', 'img_align': 'center'}"/>
+                                    <div style="font-size: 8pt; color: white; font-wight: bold; background-color: grey; width: 100%;">
+                                        <p style="margin-left: 5px">Batec Batiment technique</p>
+                                    </div>
+                                </t>
+                                <t t-else="">
+                                    <div style="margin-top: 2px">
+                                        <br/>
+                                        <br/>
+                                        <br/>
+                                        <br/>
+                                        <br/>
+                                        <div style="font-size: 8pt; color: white; font-wight: bold; background-color: grey; width: 100%;">
+                                            <p style="margin-left: 5px; text-align: left;">Batec Batiment technique</p>
+                                        </div>
+                                    </div>
+                                </t>
                             </center>
-                            <div style="font-size: 7pt; color: white; font-wight: bold; background-color: grey; width: 100%;">
-                                <table>
-                                    <tr>
-                                        <td>Batec Batiment technique</td>
-                                    </tr>
-                                </table>
-                            </div>
                         </div>
                     </t>
                 </t>

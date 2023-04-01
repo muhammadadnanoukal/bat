@@ -88,6 +88,7 @@ class ApprovalRequest(models.Model):
                 line.company_id,
                 new_transfer_order,
             )
+            print('omar error : ', dict(transfer_order_line_vals, picking_id=picking_record.id))
             new_to_line = self.env['stock.move.line'].create(dict(transfer_order_line_vals
                                                                   , picking_id=picking_record.id))
             line.transfer_order_line_id = new_to_line.id

@@ -21,7 +21,7 @@ class PrepareTransferOrder(models.Model):
     def _prepare_transfer_line_vals(self, product_id, product_qty, product_uom, company_id, tr_order, reserved_quant=None):
         vals = {
             'move_id': tr_order.id,
-            'product_uom_qty': product_qty,
+            # 'product_uom_qty': product_qty,
             'product_id': product_id.id,
             'product_uom_id': product_uom.id,
             'location_id': tr_order.location_id.id,

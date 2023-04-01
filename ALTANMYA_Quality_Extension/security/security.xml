@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="quality_read_own_quality_check" model="ir.rule">
+        <field name="name">Quality Check Rule</field>
+        <field name="model_id" ref="quality.model_quality_check"/>
+        <field name="domain_force">[('team_id.team_members', 'in', user.id)]</field>
+        <field name="groups" eval="[(4, ref('quality.group_quality_user'))]"/>
+        <field name="perm_read" eval="True"/>
+        <field name="perm_write" eval="True"/>
+        <field name="perm_create" eval="True"/>
+        <field name="perm_unlink" eval="True"/>
+    </record>
+</odoo>

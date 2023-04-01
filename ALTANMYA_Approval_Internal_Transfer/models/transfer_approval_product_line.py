@@ -17,14 +17,14 @@ class TanmyaApprovalProductLine(models.Model):
             return []
         category = self.env['approval.category'].browse(category_id)
         if category.approval_type == 'transfer':
-            return [('transfer_ok', '=', True)]
+            return [('detailed_type', 'not in', ('service', 'course'))]
 
     # to => transfer order
     to_uom_qty = fields.Float(
         "Transfer UoM Quantity", compute='_compute_to_uom_qty',
         help="The quantity converted into the UoM used by the product in Transfer Order.")
     transfer_order_line_id = fields.Many2one('stock.move.line')
-    # product_id = fields.Many2one(domain=lambda self: self._domain_product_id())
+    product_id = fields.Many2one(domain=lambda self: self._domain_product_id())
 
     @api.depends('approval_request_id.approval_type', 'product_uom_id', 'quantity')
     def _compute_to_uom_qty(self):

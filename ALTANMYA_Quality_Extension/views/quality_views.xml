@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="quality_alert_team_view_form_inherit" model="ir.ui.view">
+        <field name="name">quality.alert.team.view.form.inherit</field>
+        <field name="model">quality.alert.team</field>
+        <field name="inherit_id" ref="quality_control.quality_alert_team_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='company_id']" position="after">
+                <field name="team_members" widget="many2many_tags"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>
